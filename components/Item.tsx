@@ -16,7 +16,7 @@ export default function Item() {
         <div className="py-20 px-52">
             <div className="grid grid-cols-3 gap-28">
                 {products.map((product, index) => (
-                    <div key={index} className="border p-4 relative align-middle">
+                    <div key={index} className="p-4 relative align-middle">
                         <Image src={NextImage} alt={product.name} className="w-full h-40 object-cover mb-2" />
                         {product.isNew && (
                             <span className="absolute top-2 left-2 bg-blue-500 text-white px-2 py-1 rounded">New</span>
