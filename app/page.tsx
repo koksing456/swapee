@@ -1,8 +1,5 @@
 import { Metadata } from "next"
 import Image from "next/image"
-import { PlusCircledIcon } from "@radix-ui/react-icons"
-
-import { Button } from "@/components/ui/button"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import {
@@ -12,11 +9,12 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 
+import { AddItemButton } from '@/components/add-item-button'
 import { AlbumArtwork } from "@/components/album-artwork"
 import { Menu } from "@/components/menu"
 import { PodcastEmptyPlaceholder } from "@/components/podcast-empty-placeholder"
 import { Sidebar } from "@/components/sidebar"
-import { listenNowAlbums, madeForYouAlbums } from "@/data/album"
+import { listenNowAlbums, madeForYouAlbums, categories } from "@/data/album"
 import { playlists } from "@/data/playlist"
 
 export const metadata: Metadata = {
@@ -55,19 +53,14 @@ export default function YiwuhuanwuPage() {
                     <div className="space-between flex items-center">
                       <TabsList>
                         <TabsTrigger value="music" className="relative">
-                          Music
+                          Public
                         </TabsTrigger>
-                        <TabsTrigger value="podcasts">Podcasts</TabsTrigger>
+                        <TabsTrigger value="podcasts">Favorite</TabsTrigger>
                         <TabsTrigger value="live" disabled>
-                          Live
+                          Mine
                         </TabsTrigger>
                       </TabsList>
-                      <div className="ml-auto mr-4">
-                        <Button>
-                          <PlusCircledIcon className="mr-2 h-4 w-4" />
-                          Add music
-                        </Button>
-                      </div>
+                      <AddItemButton />
                     </div>
                     <TabsContent
                       value="music"
@@ -76,10 +69,10 @@ export default function YiwuhuanwuPage() {
                       <div className="flex items-center justify-between">
                         <div className="space-y-1">
                           <h2 className="text-2xl font-semibold tracking-tight">
-                            Listen Now
+                            Trending Item
                           </h2>
                           <p className="text-sm text-muted-foreground">
-                            Top picks for you. Updated daily.
+                            Nice item for you.
                           </p>
                         </div>
                       </div>
@@ -87,10 +80,10 @@ export default function YiwuhuanwuPage() {
                       <div className="relative">
                         <ScrollArea>
                           <div className="flex space-x-4 pb-4">
-                            {listenNowAlbums.map((album) => (
+                            {categories.map((category) => (
                               <AlbumArtwork
-                                key={album.name}
-                                album={album}
+                                key={category.value}
+                                category={category}
                                 className="w-[250px]"
                                 aspectRatio="portrait"
                                 width={250}
@@ -103,20 +96,20 @@ export default function YiwuhuanwuPage() {
                       </div>
                       <div className="mt-6 space-y-1">
                         <h2 className="text-2xl font-semibold tracking-tight">
-                          Made for You
+                          Category
                         </h2>
                         <p className="text-sm text-muted-foreground">
-                          Your personal playlists. Updated daily.
+                          Visit the items by category.
                         </p>
                       </div>
                       <Separator className="my-4" />
                       <div className="relative">
                         <ScrollArea>
                           <div className="flex space-x-4 pb-4">
-                            {madeForYouAlbums.map((album) => (
+                            {categories.map((category) => (
                               <AlbumArtwork
-                                key={album.name}
-                                album={album}
+                                key={category.value}
+                                category={category}
                                 className="w-[150px]"
                                 aspectRatio="square"
                                 width={150}

@@ -21,7 +21,7 @@ import {
         <MenubarMenu>
           <MenubarTrigger className="font-bold">yiwuhuanwu ｜ 以物换物</MenubarTrigger>
           <MenubarContent>
-            <MenubarItem>About Music</MenubarItem>
+            <MenubarItem>About yiwuhuanwu</MenubarItem>
             <MenubarSeparator />
             <MenubarItem>
               Preferences... <MenubarShortcut>⌘,</MenubarShortcut>
@@ -40,7 +40,7 @@ import {
           </MenubarContent>
         </MenubarMenu>
         <MenubarMenu>
-          <MenubarTrigger className="relative">File</MenubarTrigger>
+          <MenubarTrigger className="relative">All</MenubarTrigger>
           <MenubarContent>
             <MenubarSub>
               <MenubarSubTrigger>New</MenubarSubTrigger>
@@ -99,7 +99,7 @@ import {
           </MenubarContent>
         </MenubarMenu>
         <MenubarMenu>
-          <MenubarTrigger>Edit</MenubarTrigger>
+          <MenubarTrigger>New</MenubarTrigger>
           <MenubarContent>
             <MenubarItem disabled>
               Undo <MenubarShortcut>⌘Z</MenubarShortcut>
@@ -164,7 +164,7 @@ import {
           </MenubarContent>
         </MenubarMenu>
         <MenubarMenu>
-          <MenubarTrigger>View</MenubarTrigger>
+          <MenubarTrigger>Trending</MenubarTrigger>
           <MenubarContent>
             <MenubarCheckboxItem>Show Playing Next</MenubarCheckboxItem>
             <MenubarCheckboxItem checked>Show Lyrics</MenubarCheckboxItem>
@@ -180,7 +180,7 @@ import {
           </MenubarContent>
         </MenubarMenu>
         <MenubarMenu>
-          <MenubarTrigger className="hidden md:block">Account</MenubarTrigger>
+          <MenubarTrigger className="hidden md:block">Most Popular</MenubarTrigger>
           <MenubarContent forceMount>
             <MenubarLabel inset>Switch Account</MenubarLabel>
             <MenubarSeparator />
