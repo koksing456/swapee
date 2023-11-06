@@ -1,7 +1,7 @@
-import Image from "next/image"
-import { PlusCircledIcon } from "@radix-ui/react-icons"
+import Image from "next/image";
+import { PlusCircledIcon } from "@radix-ui/react-icons";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/app/lib/utils";
 import {
   ContextMenu,
   ContextMenuContent,
@@ -11,16 +11,16 @@ import {
   ContextMenuSubContent,
   ContextMenuSubTrigger,
   ContextMenuTrigger,
-} from "@/components/ui/context-menu"
+} from "@/app/components/ui/context-menu";
 
-import { Category } from "@/data/album"
-import { playlists } from "@/data/playlist"
+import { Category } from "@/app/lib/data/album";
+import { playlists } from "@/app/lib/data/playlist";
 
 interface AlbumArtworkProps extends React.HTMLAttributes<HTMLDivElement> {
-  category: Category
-  aspectRatio?: "portrait" | "square"
-  width?: number
-  height?: number
+  category: Category;
+  aspectRatio?: "portrait" | "square";
+  width?: number;
+  height?: number;
 }
 
 export function AlbumArtwork({
@@ -91,5 +91,5 @@ export function AlbumArtwork({
         <p className="text-xs text-muted-foreground">{category.value}</p>
       </div>
     </div>
-  )
+  );
 }

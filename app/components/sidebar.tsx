@@ -1,11 +1,11 @@
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
+import { cn } from "@/app/lib/utils";
+import { Button } from "@/app/components/ui/button";
+import { ScrollArea } from "@/app/components/ui/scroll-area";
 
-import { Playlist } from "@/data/playlist"
+import { Playlist } from "@/app/lib/data/playlist";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  playlists: Playlist[]
+  playlists: Playlist[];
 }
 
 export function Sidebar({ className, playlists }: SidebarProps) {
@@ -200,5 +200,5 @@ export function Sidebar({ className, playlists }: SidebarProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

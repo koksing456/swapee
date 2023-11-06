@@ -1,26 +1,30 @@
-import { Metadata } from "next"
-import Image from "next/image"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
-import { Separator } from "@/components/ui/separator"
+import { Metadata } from "next";
+import Image from "next/image";
+import { ScrollArea, ScrollBar } from "@/app/components/ui/scroll-area";
+import { Separator } from "@/app/components/ui/separator";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/components/ui/tabs"
+} from "@/app/components/ui/tabs";
 
-import { AddItemButton } from '@/components/add-item-button'
-import { AlbumArtwork } from "@/components/album-artwork"
-import { Menu } from "@/components/menu"
-import { PodcastEmptyPlaceholder } from "@/components/podcast-empty-placeholder"
-import { Sidebar } from "@/components/sidebar"
-import { listenNowAlbums, madeForYouAlbums, categories } from "@/data/album"
-import { playlists } from "@/data/playlist"
+import { AddItemButton } from "@/app/components/add-item-button";
+import { AlbumArtwork } from "@/app/components/album-artwork";
+import { Menu } from "@/app/components/menu";
+import { PodcastEmptyPlaceholder } from "@/app/components/podcast-empty-placeholder";
+import { Sidebar } from "@/app/components/sidebar";
+import {
+  listenNowAlbums,
+  madeForYouAlbums,
+  categories,
+} from "@/app/lib/data/album";
+import { playlists } from "@/app/lib/data/playlist";
 
 export const metadata: Metadata = {
   title: "yiwuhuanwu ｜ 以物换物",
   description: "Barter anything with yiwuhuanyu",
-}
+};
 
 export default function YiwuhuanwuPage() {
   return (
@@ -146,5 +150,5 @@ export default function YiwuhuanwuPage() {
         </div>
       </div>
     </>
-  )
+  );
 }
