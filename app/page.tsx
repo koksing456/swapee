@@ -11,7 +11,6 @@ import {
 
 import { AddItemButton } from "@/app/components/add-item-button";
 import { AlbumArtwork } from "@/app/components/album-artwork";
-import { Menu } from "@/app/components/menu";
 import { PodcastEmptyPlaceholder } from "@/app/components/podcast-empty-placeholder";
 import { Sidebar } from "@/app/components/sidebar";
 import {
@@ -46,7 +45,6 @@ export default function YiwuhuanwuPage() {
         />
       </div>
       <div className="hidden md:block">
-        <Menu />
         <div className="border-t">
           <div className="bg-background">
             <div className="grid lg:grid-cols-5">
