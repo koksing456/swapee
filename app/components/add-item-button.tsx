@@ -189,7 +189,7 @@ export function AddItemButton() {
           <div className="grid gap-2">
             <Label htmlFor="listing-options">Listing Options</Label>
             {sellMethods.map((sellMethod) => (
-              <div className="flex items-center space-x-2">
+              <div key={sellMethod.id} className="flex items-center space-x-2">
                 <Checkbox id={sellMethod.id} />
                 <Label
                   className="text-sm text-muted-foreground"

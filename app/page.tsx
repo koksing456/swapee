@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import Image from "next/image";
 import { ScrollArea, ScrollBar } from "@/app/components/ui/scroll-area";
 import { Separator } from "@/app/components/ui/separator";
@@ -14,8 +15,8 @@ import { AlbumArtwork } from "@/app/components/album-artwork";
 import { PodcastEmptyPlaceholder } from "@/app/components/podcast-empty-placeholder";
 import { Sidebar } from "@/app/components/sidebar";
 import {
-  listenNowAlbums,
-  madeForYouAlbums,
+  // listenNowAlbums,
+  // madeForYouAlbums,
   categories,
 } from "@/app/lib/data/album";
 import { playlists } from "@/app/lib/data/playlist";
@@ -57,7 +58,7 @@ export default function YiwuhuanwuPage() {
                         <TabsTrigger value="music" className="relative">
                           Public
                         </TabsTrigger>
-                        <TabsTrigger value="podcasts">Favorite</TabsTrigger>
+                        <TabsTrigger value="podcasts">Favorites</TabsTrigger>
                         <TabsTrigger value="live" disabled>
                           Mine
                         </TabsTrigger>
@@ -83,14 +84,18 @@ export default function YiwuhuanwuPage() {
                         <ScrollArea>
                           <div className="flex space-x-4 pb-4">
                             {categories.map((category) => (
-                              <AlbumArtwork
+                              <Link
                                 key={category.value}
-                                category={category}
-                                className="w-[250px]"
-                                aspectRatio="portrait"
-                                width={250}
-                                height={330}
-                              />
+                                href={`/items/${category.value}`}
+                              >
+                                <AlbumArtwork
+                                  category={category}
+                                  className="w-[250px]"
+                                  aspectRatio="portrait"
+                                  width={250}
+                                  height={330}
+                                />
+                              </Link>
                             ))}
                           </div>
                           <ScrollBar orientation="horizontal" />
@@ -133,7 +138,7 @@ export default function YiwuhuanwuPage() {
                             New Episodes
                           </h2>
                           <p className="text-sm text-muted-foreground">
-                            Your favorite podcasts. Updated daily.
+                            Your favorites podcasts. Updated daily.
                           </p>
                         </div>
                       </div>
