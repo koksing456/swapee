@@ -11,14 +11,11 @@ import {
 } from "@/app/components/ui/tabs";
 
 import { AddItemButton } from "@/app/components/add-item-button";
-import { AlbumArtwork } from "@/app/components/album-artwork";
+import { ItemList } from "@/app/components/item-list";
+import { CategoryList } from "@/app/components/category-list";
 import { PodcastEmptyPlaceholder } from "@/app/components/podcast-empty-placeholder";
 import { Sidebar } from "@/app/components/sidebar";
-import {
-  // listenNowAlbums,
-  // madeForYouAlbums,
-  categories,
-} from "@/app/lib/data/album";
+import { fetchAllCategories, fetchAllItems } from "@/app/lib/data/data";
 import { playlists } from "@/app/lib/data/playlist";
 
 export const metadata: Metadata = {
@@ -26,7 +23,10 @@ export const metadata: Metadata = {
   description: "Barter anything with yiwuhuanyu",
 };
 
-export default function YiwuhuanwuPage() {
+export default async function Page() {
+  const categories = await fetchAllCategories();
+  const items = await fetchAllItems();
+
   return (
     <>
       <div className="md:hidden">
@@ -83,13 +83,10 @@ export default function YiwuhuanwuPage() {
                       <div className="relative">
                         <ScrollArea>
                           <div className="flex space-x-4 pb-4">
-                            {categories.map((category) => (
-                              <Link
-                                key={category.value}
-                                href={`/items/${category.value}`}
-                              >
-                                <AlbumArtwork
-                                  category={category}
+                            {items?.map((item) => (
+                              <Link key={item.id} href={`/items/${item.id}`}>
+                                <ItemList
+                                  item={item}
                                   className="w-[250px]"
                                   aspectRatio="portrait"
                                   width={250}
@@ -113,15 +110,19 @@ export default function YiwuhuanwuPage() {
                       <div className="relative">
                         <ScrollArea>
                           <div className="flex space-x-4 pb-4">
-                            {categories.map((category) => (
-                              <AlbumArtwork
-                                key={category.value}
-                                category={category}
-                                className="w-[150px]"
-                                aspectRatio="square"
-                                width={150}
-                                height={150}
-                              />
+                            {categories?.map((category) => (
+                              <Link
+                                key={category.id}
+                                href={`/categories/${category.name}`}
+                              >
+                                <CategoryList
+                                  category={category}
+                                  className="w-[150px]"
+                                  aspectRatio="square"
+                                  width={150}
+                                  height={150}
+                                />
+                              </Link>
                             ))}
                           </div>
                           <ScrollBar orientation="horizontal" />

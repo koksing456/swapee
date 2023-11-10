@@ -13,17 +13,17 @@ import {
   ContextMenuTrigger,
 } from "@/app/components/ui/context-menu";
 
-import { Category } from "@/app/lib/data/album";
+import { Tables } from "@/app/lib/data/supabase";
 import { playlists } from "@/app/lib/data/playlist";
 
 interface AlbumArtworkProps extends React.HTMLAttributes<HTMLDivElement> {
-  category: Category;
+  category: Tables<"Category">;
   aspectRatio?: "portrait" | "square";
   width?: number;
   height?: number;
 }
 
-export function AlbumArtwork({
+export function CategoryList({
   category,
   aspectRatio = "portrait",
   width,
@@ -37,8 +37,8 @@ export function AlbumArtwork({
         <ContextMenuTrigger>
           <div className="overflow-hidden rounded-md">
             <Image
-              src={category.cover}
-              alt={category.label}
+              src={category.picture_url!}
+              alt={category.name}
               width={width}
               height={height}
               className={cn(
@@ -87,8 +87,8 @@ export function AlbumArtwork({
         </ContextMenuContent>
       </ContextMenu>
       <div className="space-y-1 text-sm">
-        <h3 className="font-medium leading-none">{category.label}</h3>
-        <p className="text-xs text-muted-foreground">{category.value}</p>
+        <h3 className="font-medium leading-none">{category.name}</h3>
+        <p className="text-xs text-muted-foreground">{category.name}</p>
       </div>
     </div>
   );
