@@ -15,7 +15,11 @@ import { ItemList } from "@/app/components/item-list";
 import { CategoryList } from "@/app/components/category-list";
 import { PodcastEmptyPlaceholder } from "@/app/components/podcast-empty-placeholder";
 import { Sidebar } from "@/app/components/sidebar";
-import { fetchAllCategories, fetchAllItems } from "@/app/lib/data/data";
+import {
+  fetchAllCategories,
+  fetchAllItems,
+  fetchImageByPath,
+} from "@/app/lib/data/data";
 import { playlists } from "@/app/lib/data/playlist";
 
 export const metadata: Metadata = {
@@ -24,8 +28,12 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const categories = await fetchAllCategories();
-  const items = await fetchAllItems();
+  const [categories, items] = await Promise.all([
+    fetchAllCategories(),
+    fetchAllItems(),
+  ]);
+  const image = await fetchImageByPath("test.png");
+  console.log(image);
 
   return (
     <>
@@ -113,7 +121,7 @@ export default async function Page() {
                             {categories?.map((category) => (
                               <Link
                                 key={category.id}
-                                href={`/categories/${category.name}`}
+                                href={`/categories/${category.lowercase_name}`}
                               >
                                 <CategoryList
                                   category={category}

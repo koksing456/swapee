@@ -13,7 +13,7 @@ import {
   ContextMenuTrigger,
 } from "@/app/components/ui/context-menu";
 
-import { Tables } from "@/app/lib/data/supabase";
+import { Tables } from "@/app/lib/data/tables_definitions";
 import { playlists } from "@/app/lib/data/playlist";
 
 interface AlbumArtworkProps extends React.HTMLAttributes<HTMLDivElement> {

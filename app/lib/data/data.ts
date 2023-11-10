@@ -32,3 +32,15 @@ export async function fetchAllItems() {
 }
 
 export async function storeItem() {}
+
+export async function fetchImageByPath(imageName: string) {
+  try {
+    const { data } = supabase.storage
+      .from("item_pictures")
+      .getPublicUrl(imageName);
+    return data;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch image data.");
+  }
+}
