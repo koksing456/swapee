@@ -33,7 +33,6 @@ export default async function Page() {
     fetchAllItems(),
   ]);
   const image = await fetchImageByPath("test.png");
-  console.log(image);
 
   return (
     <>

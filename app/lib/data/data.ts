@@ -31,8 +31,6 @@ export async function fetchAllItems() {
   }
 }
 
-export async function storeItem() {}
-
 export async function fetchImageByPath(imageName: string) {
   try {
     const { data } = supabase.storage
