@@ -9,7 +9,7 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      Category: {
+      category: {
         Row: {
           created_at: string | null
           id: number
@@ -33,7 +33,7 @@ export interface Database {
         }
         Relationships: []
       }
-      Item: {
+      item: {
         Row: {
           category_id: number
           created_at: string
@@ -66,29 +66,22 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "Item_category_id_fkey"
-            columns: ["category_id"]
-            isOneToOne: false
-            referencedRelation: "Category"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "Item_picture_id_fkey"
+            foreignKeyName: "item_picture_id_fkey"
             columns: ["picture_id"]
             isOneToOne: false
-            referencedRelation: "Picture"
+            referencedRelation: "picture"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "Item_uploaded_by_user_id_fkey"
+            foreignKeyName: "item_uploaded_by_user_id_fkey"
             columns: ["uploaded_by_user_id"]
             isOneToOne: false
-            referencedRelation: "User"
+            referencedRelation: "user"
             referencedColumns: ["id"]
           }
         ]
       }
-      Picture: {
+      picture: {
         Row: {
           created_at: string
           id: number
@@ -106,7 +99,7 @@ export interface Database {
         }
         Relationships: []
       }
-      User: {
+      user: {
         Row: {
           created_at: string
           id: number
