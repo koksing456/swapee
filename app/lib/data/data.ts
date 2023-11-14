@@ -22,7 +22,6 @@ export async function fetchAllCategories() {
 export async function fetchAllItems() {
   try {
     const { data: items } = await supabase.from("Item").select("*");
-    console.log(items);
 
     return items;
   } catch (error) {
