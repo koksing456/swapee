@@ -39,7 +39,6 @@ export interface Database {
           created_at: string
           description: string | null
           id: number
-          listing_option: string
           name: string
           picture_id: number
           uploaded_by_user_id: number
@@ -49,7 +48,6 @@ export interface Database {
           created_at?: string
           description?: string | null
           id?: number
-          listing_option: string
           name: string
           picture_id: number
           uploaded_by_user_id: number
@@ -59,7 +57,6 @@ export interface Database {
           created_at?: string
           description?: string | null
           id?: number
-          listing_option?: string
           name?: string
           picture_id?: number
           uploaded_by_user_id?: number
