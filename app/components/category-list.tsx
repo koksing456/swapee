@@ -88,7 +88,7 @@ export function CategoryList({
       </ContextMenu>
       <div className="space-y-1 text-sm">
         <h3 className="font-medium leading-none">{category.name}</h3>
-        <p className="text-xs text-muted-foreground">{category.name}</p>
+        {/* <p className="text-xs text-muted-foreground">{category.name}</p> */}
       </div>
     </div>
   );

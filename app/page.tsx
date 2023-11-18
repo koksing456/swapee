@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { Button } from "@/app/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/app/components/ui/scroll-area";
 import { Separator } from "@/app/components/ui/separator";
 import {
@@ -10,7 +11,6 @@ import {
   TabsTrigger,
 } from "@/app/components/ui/tabs";
 
-import { AddItemButton } from "@/app/components/add-item-button";
 import { ItemList } from "@/app/components/item-list";
 import { CategoryList } from "@/app/components/category-list";
 import { PodcastEmptyPlaceholder } from "@/app/components/podcast-empty-placeholder";
@@ -18,9 +18,9 @@ import { Sidebar } from "@/app/components/sidebar";
 import {
   fetchAllCategories,
   fetchAllItems,
-  fetchImageByPath,
 } from "@/app/lib/data/data";
 import { playlists } from "@/app/lib/data/playlist";
+import { PlusCircledIcon } from "@radix-ui/react-icons";
 
 export const metadata: Metadata = {
   title: "yiwuhuanwu ｜ 以物换物",
@@ -32,7 +32,6 @@ export default async function Page() {
     fetchAllCategories(),
     fetchAllItems(),
   ]);
-  const image = await fetchImageByPath("test.png");
 
   return (
     <>
@@ -70,7 +69,14 @@ export default async function Page() {
                           Mine
                         </TabsTrigger>
                       </TabsList>
-                      <AddItemButton />
+                      <div className="ml-auto mr-4">
+                        <Link href="/items/add">
+                          <Button>
+                            <PlusCircledIcon className="mr-2 h-4 w-4" />
+                            Add Item
+                          </Button>
+                        </Link>
+                      </div>
                     </div>
                     <TabsContent
                       value="music"

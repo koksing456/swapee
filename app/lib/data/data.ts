@@ -10,34 +10,49 @@ const supabase = createClient<Database>(
 );
 
 export async function fetchAllCategories() {
-  try {
-    const { data: categories } = await supabase.from("Category").select("*");
-    return categories;
-  } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch category data.");
+  const { data: categories, error } = await supabase
+    .from("category")
+    .select("*");
+  if (error) {
+    console.error("Error fetching categories:", error);
+    return;
   }
+  console.log("categories is fetch: ", categories);
+  return categories;
 }
 
 export async function fetchAllItems() {
-  try {
-    const { data: items } = await supabase.from("Item").select("*");
-
-    return items;
-  } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch item data.");
+  const { data: items, error } = await supabase.from("item").select("*");
+  if (error) {
+    console.error("Error fetching items:", error);
+    return;
   }
+  console.log("items is fetch: ", items);
+  return items;
 }
 
-export async function fetchImageByPath(imageName: string) {
-  try {
-    const { data } = supabase.storage
-      .from("item_pictures")
-      .getPublicUrl(imageName);
-    return data;
-  } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch image data.");
+export async function fetchItemDetails(id: number) {
+  const { data: items, error } = await supabase
+    .from("item")
+    .select("*")
+    .eq("id", id);
+  if (error) {
+    console.error("Error fetching items:", error);
+    return;
   }
+  console.log("items is fetch: ", items);
+  return items;
+}
+
+export async function fetchPictureByPictureId(pictureId: number) {
+  const { data: picture, error } = await supabase
+    .from("picture")
+    .select("url")
+    .eq("id", pictureId);
+  if (error) {
+    console.error("Error fetching picture:", error);
+    return;
+  }
+  console.log("url is fetch: ", picture);
+  return picture[0].url;
 }

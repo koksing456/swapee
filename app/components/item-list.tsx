@@ -15,15 +15,16 @@ import {
 
 import { Tables } from "@/app/lib/data/tables_definitions";
 import { playlists } from "@/app/lib/data/playlist";
+import { fetchPictureByPictureId } from "@/app/lib/data/data";
 
 interface AlbumArtworkProps extends React.HTMLAttributes<HTMLDivElement> {
-  item: Tables<"Item">;
+  item: Tables<"item">;
   aspectRatio?: "portrait" | "square";
   width?: number;
   height?: number;
 }
 
-export function ItemList({
+export async function ItemList({
   item,
   aspectRatio = "portrait",
   width,
@@ -31,15 +32,14 @@ export function ItemList({
   className,
   ...props
 }: AlbumArtworkProps) {
+  const pictureUrl = await fetchPictureByPictureId(item.picture_id);
   return (
     <div className={cn("space-y-3", className)} {...props}>
       <ContextMenu>
         <ContextMenuTrigger>
           <div className="overflow-hidden rounded-md">
             <Image
-              src={
-                "https://images.unsplash.com/photo-1697659984086-805972afd080?w=300&dpr=2&q=80"
-              }
+              src={pictureUrl}
               alt={item.name}
               width={width}
               height={height}
@@ -90,7 +90,7 @@ export function ItemList({
       </ContextMenu>
       <div className="space-y-1 text-sm">
         <h3 className="font-medium leading-none">{item.name}</h3>
-        <p className="text-xs text-muted-foreground">{item.name}</p>
+        <p className="text-xs text-muted-foreground">{item.description}</p>
       </div>
     </div>
   );
