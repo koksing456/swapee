@@ -15,12 +15,14 @@ import {
   MenubarTrigger,
 } from "@/app/components/ui/menubar";
 
+import Link from "next/link";
+
 export function Menu() {
   return (
     <Menubar className="rounded-none border-b border-none px-2 lg:px-4">
       <MenubarMenu>
         <MenubarTrigger className="font-bold">
-          yiwuhuanwu ｜ 以物换物
+          <Link href="/">yiwuhuanwu ｜ 以物换物</Link>
         </MenubarTrigger>
         <MenubarContent>
           <MenubarItem>About yiwuhuanwu</MenubarItem>
