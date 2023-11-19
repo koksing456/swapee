@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/app/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/app/components/ui/scroll-area";
 import { Separator } from "@/app/components/ui/separator";
 import {
@@ -15,12 +14,9 @@ import { ItemList } from "@/app/components/item/item-list";
 import { CategoryList } from "@/app/components/category-list";
 import { PodcastEmptyPlaceholder } from "@/app/components/podcast-empty-placeholder";
 import { Sidebar } from "@/app/components/sidebar";
-import {
-  fetchAllCategories,
-  fetchAllItems,
-} from "@/app/lib/data/data";
+import { fetchAllCategories, fetchAllItems } from "@/app/lib/data/data";
 import { playlists } from "@/app/lib/data/playlist";
-import { PlusCircledIcon } from "@radix-ui/react-icons";
+import AddItemButton from "@/app/components/item/add-item-button";
 
 export const metadata: Metadata = {
   title: "yiwuhuanwu ｜ 以物换物",
@@ -70,12 +66,7 @@ export default async function Page() {
                         </TabsTrigger>
                       </TabsList>
                       <div className="ml-auto mr-4">
-                        <Link href="/items/add">
-                          <Button>
-                            <PlusCircledIcon className="mr-2 h-4 w-4" />
-                            Add Item
-                          </Button>
-                        </Link>
+                        <AddItemButton />
                       </div>
                     </div>
                     <TabsContent
