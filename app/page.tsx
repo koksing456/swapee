@@ -11,7 +11,7 @@ import {
   TabsTrigger,
 } from "@/app/components/ui/tabs";
 
-import { ItemList } from "@/app/components/item-list";
+import { ItemList } from "@/app/components/item/item-list";
 import { CategoryList } from "@/app/components/category-list";
 import { PodcastEmptyPlaceholder } from "@/app/components/podcast-empty-placeholder";
 import { Sidebar } from "@/app/components/sidebar";
