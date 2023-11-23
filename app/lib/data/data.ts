@@ -1,12 +1,23 @@
-import { createClient, PostgrestError } from "@supabase/supabase-js";
+"use server";
+
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { Database } from "./supabase";
 
 const { NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY } = process.env;
 
-const supabase = createClient<Database>(
+const cookieStore = cookies();
+
+const supabase = createServerClient<Database>(
   NEXT_PUBLIC_SUPABASE_URL!,
-  NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  {
+    cookies: {
+      get(name: string) {
+        return cookieStore.get(name)?.value;
+      },
+    },
+  }
 );
 
 export async function fetchAllCategories() {
@@ -17,7 +28,6 @@ export async function fetchAllCategories() {
     console.error("Error fetching categories:", error);
     return;
   }
-  console.log("categories is fetch: ", categories);
   return categories;
 }
 
@@ -27,7 +37,6 @@ export async function fetchAllItems() {
     console.error("Error fetching items:", error);
     return;
   }
-  console.log("items is fetch: ", items);
   return items;
 }
 
@@ -40,7 +49,6 @@ export async function fetchItemDetails(id: number) {
     console.error("Error fetching items:", error);
     return;
   }
-  console.log("items is fetch: ", items);
   return items;
 }
 
@@ -53,6 +61,5 @@ export async function fetchPictureByPictureId(pictureId: number) {
     console.error("Error fetching picture:", error);
     return;
   }
-  console.log("url is fetch: ", picture);
   return picture[0].url;
 }

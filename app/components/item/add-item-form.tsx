@@ -93,8 +93,8 @@ export function AddItemForm() {
   return (
     <div className="mt-10 mx-96 px-96">
       <form action={createItem} className="ml-auto mr-4 rounded-lg">
-        <h1>Add Item</h1>
-        Fill in the detail of your item
+        <h1 className="text-2xl font-semibold tracking-tight">Add Item</h1>
+        <p>Fill in the detail of your item</p>
         <div className="grid gap-4 py-4">
           <div className="grid gap-2">
             <Label htmlFor="item-picture">Picture</Label>

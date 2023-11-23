@@ -3,15 +3,27 @@
 import { z } from "zod";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { createClient, PostgrestError } from "@supabase/supabase-js";
-import { Database } from "@/app/lib/data/supabase";
+import { cookies } from "next/headers";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { v4 as uuidv4 } from "uuid";
+
+import { Database } from "@/app/lib/data/supabase";
+import createSupabaseServerClient from "@/app/lib/supabase/supabase";
 
 const { NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY } = process.env;
 
-const supabase = createClient<Database>(
+const cookieStore = cookies();
+
+const supabase = createServerClient<Database>(
   NEXT_PUBLIC_SUPABASE_URL!,
-  NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  {
+    cookies: {
+      get(name: string) {
+        return cookieStore.get(name)?.value;
+      },
+    },
+  }
 );
 
 const ItemSchema = z.object({
@@ -40,8 +52,6 @@ export async function createItem(formData: FormData) {
 
   const { picture, name, description, category } = rawFormData;
 
-  console.log(rawFormData);
-
   const createdPicture = await createPicture(picture);
   const cagegoryId = await retrieveCategoryIdByName(category);
 
@@ -66,9 +76,6 @@ async function storeItem(
   cagegoryId: any
   // listing_option: any
 ) {
-  console.log("----------------");
-
-  console.log(createdPicture);
   const { data, error } = await supabase
     .from("item")
     .insert([
@@ -83,19 +90,13 @@ async function storeItem(
     ])
     .select();
 
-  console.log("inserting...");
-
   if (error) {
     console.error("Error creating item to table: ", error);
     return;
   }
-
-  console.log("item is created: ", data);
 }
 
 async function createPicture(picture: any) {
-  console.log("picture123: ", picture);
-
   if (picture.size !== 0) {
     const sanitizePictureName = `${picture.name}-${uuidv4()}`;
     createPictureToBucket(picture, sanitizePictureName);
@@ -110,7 +111,6 @@ async function createPicture(picture: any) {
       return;
     }
 
-    console.log("picture is created: ", data);
     return data;
   }
 }
@@ -130,13 +130,9 @@ async function createPictureToBucket(
     console.error("Error creating picture to bucket:", error);
     return;
   }
-
-  console.log("picture is created to bucket: ", data);
 }
 
 async function retrieveCategoryIdByName(name: any) {
-  console.log("catgeory name: ", name.trim());
-
   const { data, error } = await supabase
     .from("category")
     .select("id")
@@ -147,6 +143,37 @@ async function retrieveCategoryIdByName(name: any) {
     return;
   }
 
-  console.log("category: ", data);
   return data[0].id;
+}
+
+export async function signUpWithEmail(formData: FormData) {
+  const rawFormData = {
+    email: formData.get("email")?.toString(),
+    password: formData.get("password")?.toString(),
+  };
+  const supabase = await createSupabaseServerClient();
+  const { email, password } = rawFormData;
+
+  const { data, error } = await supabase.auth.signUp({
+    email: email!,
+    password: password!,
+  });
+
+  if (data) {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email!,
+      password: password!,
+    });
+
+    console.log(" login: ", data);
+  }
+
+  revalidatePath("/");
+  redirect("/");
+}
+
+export async function readUserSession() {
+  const supabase = await createSupabaseServerClient();
+
+  return supabase.auth.getSession();
 }

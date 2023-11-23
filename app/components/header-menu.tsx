@@ -15,9 +15,13 @@ import {
   MenubarTrigger,
 } from "@/app/components/ui/menubar";
 
+import { readUserSession } from "@/app/lib/actions";
+
 import Link from "next/link";
 
-export function Menu() {
+export async function Menu() {
+  const { data } = await readUserSession();
+
   return (
     <Menubar className="rounded-none border-b border-none px-2 lg:px-4">
       <MenubarMenu>
@@ -201,6 +205,15 @@ export function Menu() {
           <MenubarItem inset>Add Account...</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
+      {data ? (
+        <></>
+      ) : (
+        <MenubarMenu>
+          <MenubarTrigger className="hidden md:block">
+            <Link href="/login">Login</Link>
+          </MenubarTrigger>
+        </MenubarMenu>
+      )}
     </Menubar>
   );
 }

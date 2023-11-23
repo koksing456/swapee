@@ -95,8 +95,6 @@ export default async function Page({ params }: { params: { id: number } }) {
   const pictureUrl = await fetchPictureByPictureId(item![0].picture_id);
   const pictureUrlArr = [pictureUrl];
 
-  console.log(item);
-
   if (!item) return notFound();
 
   return (
