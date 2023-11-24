@@ -177,3 +177,16 @@ export async function readUserSession() {
 
   return supabase.auth.getSession();
 }
+
+// export async function signOut() {
+//   console.log("sign out");
+
+//   const supabase = await createSupabaseServerClient();
+
+//   const { error } = await supabase.auth.signOut();
+
+//   console.log(error);
+
+//   revalidatePath("/");
+//   redirect("/");
+// }

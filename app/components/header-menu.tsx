@@ -15,12 +15,24 @@ import {
   MenubarTrigger,
 } from "@/app/components/ui/menubar";
 
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/app/components/ui/avatar";
+
+import { lorelei } from "@/app/components/avatars";
+
 import { readUserSession } from "@/app/lib/actions";
 
 import Link from "next/link";
 
 export async function Menu() {
   const { data } = await readUserSession();
+
+  // console.log(data);
+
+  // const randomIndex = Math.floor(Math.random() * lorelei.length);
 
   return (
     <Menubar className="rounded-none border-b border-none px-2 lg:px-4">
@@ -206,6 +218,22 @@ export async function Menu() {
         </MenubarContent>
       </MenubarMenu>
       {data ? (
+        // <MenubarMenu>
+        //   <MenubarTrigger className="hidden md:block">
+        //     <Avatar>
+        //       <AvatarImage src={lorelei[randomIndex]} />
+        //       <AvatarFallback>
+        //         {data.session?.user.email?.slice(0, 2)}
+        //       </AvatarFallback>
+        //     </Avatar>
+        //   </MenubarTrigger>
+        //   <MenubarContent>
+        //     <MenubarItem>
+        //       {/* //not working!!! */}
+        //       Logout??? ☹️
+        //     </MenubarItem>
+        //   </MenubarContent>
+        // </MenubarMenu>
         <></>
       ) : (
         <MenubarMenu>
