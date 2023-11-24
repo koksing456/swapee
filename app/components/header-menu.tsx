@@ -30,9 +30,9 @@ import Link from "next/link";
 export async function Menu() {
   const { data } = await readUserSession();
 
-  // console.log(data);
+  console.log(data);
 
-  // const randomIndex = Math.floor(Math.random() * lorelei.length);
+  const randomIndex = Math.floor(Math.random() * lorelei.length);
 
   return (
     <Menubar className="rounded-none border-b border-none px-2 lg:px-4">
@@ -218,23 +218,19 @@ export async function Menu() {
         </MenubarContent>
       </MenubarMenu>
       {data ? (
-        // <MenubarMenu>
-        //   <MenubarTrigger className="hidden md:block">
-        //     <Avatar>
-        //       <AvatarImage src={lorelei[randomIndex]} />
-        //       <AvatarFallback>
-        //         {data.session?.user.email?.slice(0, 2)}
-        //       </AvatarFallback>
-        //     </Avatar>
-        //   </MenubarTrigger>
-        //   <MenubarContent>
-        //     <MenubarItem>
-        //       {/* //not working!!! */}
-        //       Logout??? ☹️
-        //     </MenubarItem>
-        //   </MenubarContent>
-        // </MenubarMenu>
-        <></>
+        <MenubarMenu>
+          <MenubarTrigger className="hidden md:block">
+            <Avatar>
+              <AvatarImage src={lorelei[randomIndex]} />
+              <AvatarFallback>
+                {data.session?.user.email?.slice(0, 2)}
+              </AvatarFallback>
+            </Avatar>
+          </MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem>Logout??? ☹️</MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
       ) : (
         <MenubarMenu>
           <MenubarTrigger className="hidden md:block">
