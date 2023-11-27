@@ -91,18 +91,21 @@ export interface Database {
       }
       user: {
         Row: {
+          avatar_url: string | null
           created_at: string
-          id: number
+          id: string
           name: string | null
         }
         Insert: {
+          avatar_url?: string | null
           created_at?: string
-          id?: number
+          id?: string
           name?: string | null
         }
         Update: {
+          avatar_url?: string | null
           created_at?: string
-          id?: number
+          id?: string
           name?: string | null
         }
         Relationships: []
