@@ -41,8 +41,7 @@ export interface Database {
           id: number
           name: string
           picture_id: number
-          uploaded_by_user_id: number
-          user: string | null
+          upload_by_user_id: string | null
         }
         Insert: {
           category_id: number
@@ -51,8 +50,7 @@ export interface Database {
           id?: number
           name: string
           picture_id: number
-          uploaded_by_user_id: number
-          user?: string | null
+          upload_by_user_id?: string | null
         }
         Update: {
           category_id?: number
@@ -61,8 +59,7 @@ export interface Database {
           id?: number
           name?: string
           picture_id?: number
-          uploaded_by_user_id?: number
-          user?: string | null
+          upload_by_user_id?: string | null
         }
         Relationships: [
           {
@@ -70,13 +67,6 @@ export interface Database {
             columns: ["picture_id"]
             isOneToOne: false
             referencedRelation: "picture"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "item_uploaded_by_user_id_fkey"
-            columns: ["uploaded_by_user_id"]
-            isOneToOne: false
-            referencedRelation: "user"
             referencedColumns: ["id"]
           }
         ]
