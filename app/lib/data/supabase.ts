@@ -42,6 +42,7 @@ export interface Database {
           name: string
           picture_id: number
           uploaded_by_user_id: number
+          user: string | null
         }
         Insert: {
           category_id: number
@@ -51,6 +52,7 @@ export interface Database {
           name: string
           picture_id: number
           uploaded_by_user_id: number
+          user?: string | null
         }
         Update: {
           category_id?: number
@@ -60,6 +62,7 @@ export interface Database {
           name?: string
           picture_id?: number
           uploaded_by_user_id?: number
+          user?: string | null
         }
         Relationships: [
           {
