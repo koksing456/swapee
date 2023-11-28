@@ -99,7 +99,7 @@ export interface Database {
         Insert: {
           avatar_url?: string | null
           created_at?: string
-          id?: string
+          id: string
           name?: string | null
         }
         Update: {
